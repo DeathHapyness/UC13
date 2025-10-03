@@ -1,11 +1,18 @@
+
 const express =require(`express`);
+
+const { engine } = require('express-handlebars')
 
 const app = express();
 
+app.engine('handlebars', engine());
+app.set('view engine', 'handlebars');
+app.set('views', './views')
+
+app.use('/bootstrap',express.static(__dirname + '/node_modules/bootstrap/dist'));
 const mysql = require('mysql2')
-app.get("/", function(req, res){
-    res.write("Bom dia... o sol ja raioi la na fazendinha");
-    res.end();
+app.get("/", (req, res) => {
+    res.render('index');
 });
 
 const conexao = mysql.createConnection({
