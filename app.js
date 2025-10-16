@@ -110,11 +110,42 @@ app.post('/categorias/add', (req, res) => {
     });
 });
 
+app.get('/produtos/:id', (req, res)=> {
+    const id = req.params.id;
+    const sql = `
+    select produtos.*, 
+        categorias.nome as categoria_nome 
+    from produtos 
+    join categorias on produtos.categoria_id = categorias.id 
+    where produtos.id = ?
+    `; 
+    conexao.query(sql, [id], function (erro, produtos_qs){
+        if (erro){
+            console.error('Erro ao consultar produto:', erro);
+            res.status(500).send('Erro ao consultar produto');
+            return; 
+        }
+        if (produtos_qs.length === 0){
+            return res.status(404).send('Produtos nao encontrado');
+        }
+    })
+})
 
 app.get("/categorias/add", (req, res) => { 
         res.render('categorias_forms'); 
     });
 
+app.get('/categorias', (req, res) => {
+    let sql = 'SELECT * FROM categorias';
+    conexao.query(sql, function(erro, categorias_qs) {
+        if (erro) {
+            console.error('Erro ao consultar produto:', erro);
+            res.status(500).send('Erro ao consultar produto');
+            return; 
+        }
+        res.render('tabelas', { categorias: categorias_qs });
+    });
+});
 
 
 app.listen(8080);
