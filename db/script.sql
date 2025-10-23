@@ -53,6 +53,15 @@ CREATE TABLE itens_pedido (
     FOREIGN KEY (produto_id) REFERENCES produtos(id)
 );
 
+create table usuarios(
+    id int AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    tipo VARCHAR(20) DEFAULT 'comum',
+    criado_em DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Inserir categorias
 INSERT INTO categorias (nome, descricao) VALUES
 ('Processadores', 'CPUs para desktop'),
@@ -74,3 +83,6 @@ SELECT * FROM categorias;
 
 INSERT INTO clientes(nome,email,senha,endereco) VALUES
 ('Claudio DJango', 'ClaudioDaBola@proton.me','ClaudioBolas','R. Cel. Diogo,1199 - Vila Monumento, Sao Paulo - SP');
+
+INSERT INTO usuarios (nome, email, senha, tipo) values 
+('Administrador', 'admin@email.com', '$2b$10$vcShCSwNHImUdm0/x2xk3e9qBh1DYR4vY.MUvGoX92e6N/ZYnBBNe', 'admin');

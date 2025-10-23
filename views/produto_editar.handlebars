@@ -1,0 +1,32 @@
+<div class="container mt-5" >
+    <div class="card mx-auto" style="max-width: 600px;" >
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-itens-center">
+            <h3 class="mb-0"> {{produto.nome}} </h3>
+        </div>
+        <a href="/produtos/{{produtos.id}}/editar" class="btn btn-sm btn-warning me-2" title="Editar">
+        <i class="bi bi-pencil"></i>
+        </a>
+        <a href="/produtos/{{produto.id}}/remover" class="btn btn-sm btn-danger" title="Remover">
+        </a>
+    </div>
+
+<div class="card-body" >
+    <a href="/produtos/categoria/{{produto.categoria_id}}" class="text-decoration-nome">
+        <h5 class="card-title text-muted">Categoria: {{produto.categoria_nome}}</h5>
+    </a>
+
+    <p class="card-text"><strong>Descrição:</strong> {{produto.descricao}} </p>
+
+    <p class="card-text">
+        <strong>Preco</strong> R$ {{produto.preco}} <br>
+        <strong>Estoque:</strong> {{produto.estoque}} unidas
+    </p>
+
+    <a href="/" class="btn btn btn-secondary">Voltar</a>
+
+<div class="card-footer text-muted text-end" >
+    E-Commerce PC!
+
+        </div>
+    </div>
+</div>
